@@ -1,18 +1,20 @@
 package com.github.harryssuperman.fxdatepicker;
 
-import java.time.LocalDate;
-import org.springframework.context.ApplicationContext;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.env.Environment;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println("f");
+@SpringBootApplication
+public class App {
+    @Autowired
+    static Environment env;
+
+    public static void main(String[] args) {
+
+        System.out.println("f" + env.getActiveProfiles().toString());
     }
 
 }
