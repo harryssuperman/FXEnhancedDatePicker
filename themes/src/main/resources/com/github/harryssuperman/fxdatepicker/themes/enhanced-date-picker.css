@@ -1,0 +1,132 @@
+.enhanced-date-picker {
+    -fx-background-color: #f4f6fb;
+    -fx-padding: 14;
+    -fx-spacing: 14;
+    -fx-font-family: "System";
+}
+
+.date-summary, .date-calendar {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 18;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(27, 39, 67, 0.10), 16, 0, 0, 4);
+}
+
+.date-summary {
+    -fx-min-width: 190;
+    -fx-pref-width: 210;
+    -fx-alignment: TOP_LEFT;
+}
+
+.date-calendar {
+    -fx-min-width: 330;
+    -fx-pref-width: 350;
+}
+
+.date-summary-caption {
+    -fx-text-fill: #69758b;
+    -fx-font-size: 11;
+    -fx-font-weight: bold;
+}
+
+.date-summary-day {
+    -fx-text-fill: #64728b;
+    -fx-font-size: 14;
+}
+
+.date-summary-date {
+    -fx-text-fill: #1d2b45;
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+
+.date-summary-year {
+    -fx-text-fill: #64728b;
+    -fx-font-size: 15;
+}
+
+.date-picker-navigation {
+    -fx-alignment: CENTER;
+    -fx-spacing: 6;
+}
+
+.date-picker-navigation .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #34425d;
+    -fx-cursor: hand;
+}
+
+.date-picker-navigation .button:hover,
+.date-picker-levels .button:hover,
+.date-cell:hover {
+    -fx-background-color: #edf1fa;
+}
+
+.date-picker-title {
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+.date-picker-levels {
+    -fx-alignment: CENTER;
+    -fx-spacing: 4;
+}
+
+.date-picker-levels .button {
+    -fx-font-size: 11;
+    -fx-background-radius: 14;
+    -fx-background-color: transparent;
+    -fx-text-fill: #596780;
+    -fx-cursor: hand;
+}
+
+.date-picker-levels .button:selected {
+    -fx-background-color: #e7edff;
+    -fx-text-fill: #3158c8;
+}
+
+.date-grid {
+    -fx-hgap: 4;
+    -fx-vgap: 4;
+}
+
+.date-weekday {
+    -fx-text-fill: #7b879a;
+    -fx-font-size: 11;
+    -fx-alignment: CENTER;
+}
+
+.date-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 18;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-max-width: Infinity;
+    -fx-cursor: hand;
+}
+
+.date-cell-outside {
+    -fx-text-fill: #aab2c0;
+}
+
+.date-cell-selected, .date-choice-selected {
+    -fx-background-color: #3158c8;
+    -fx-text-fill: white;
+}
+
+.date-choice {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-min-height: 44;
+    -fx-cursor: hand;
+}
+
+.date-choice:hover {
+    -fx-background-color: #edf1fa;
+}
+
+.date-today {
+    -fx-text-fill: #3158c8;
+    -fx-font-weight: bold;
+}
