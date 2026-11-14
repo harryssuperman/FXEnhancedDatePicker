@@ -3,25 +3,46 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.harryssuperman</groupId>
+
+    <groupId>com.github.harryssuperman.fx-enhanced-datepicker</groupId>
     <artifactId>fx-enhanced-datepicker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
     <modules>
+        <module>bom</module>
         <module>api</module>
         <module>core</module>
         <module>controls</module>
         <module>animations</module>
         <module>themes</module>
-        <module>demo-fx-enhanced-datepicker</module>
+        <module>testkit</module>
+        <module>demo</module>
     </modules>
 
     <properties>
         <java.version>25</java.version>
         <maven.compiler.release>25</maven.compiler.release>
+        <junit.version>5.13.4</junit.version>
         <javafx.version>25</javafx.version>
-        <junit.version>5.13.0</junit.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
