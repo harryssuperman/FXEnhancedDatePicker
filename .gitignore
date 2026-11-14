@@ -1,6 +1,7 @@
 #Eclipse files
 .project
 target/*
+**/target
 .settings/*
 .classpath
 
