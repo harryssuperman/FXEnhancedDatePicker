@@ -1,0 +1,6 @@
+@import "enhanced-date-picker.css";
+
+.date-summary-day {
+    -fx-text-fill: #64728b;
+    -fx-font-size: 14;
+}
