@@ -18,7 +18,7 @@ public final class DefaultDatePickerModel implements DatePickerModel {
         LocalDate today = LocalDate.now();
         selectedDate = new ReadOnlyObjectWrapper<>(this, "selectedDate", today);
         displayedDate = new ReadOnlyObjectWrapper<>(this, "displayedDate", today);
-        view = new ReadOnlyObjectWrapper<>(this, "view", DateView.MONTHS);
+        view = new ReadOnlyObjectWrapper<>(this, "view", DateView.DAYS);
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class DefaultDatePickerModel implements DatePickerModel {
     public void selectDate(LocalDate date) {
         selectedDate.set(Objects.requireNonNull(date, "date"));
         displayedDate.set(date);
-        view.set(DateView.MONTHS);
+        view.set(DateView.DAYS);
     }
 
     @Override
@@ -61,13 +61,14 @@ public final class DefaultDatePickerModel implements DatePickerModel {
         LocalDate date = displayedDate.get();
         int step = direction < 0 ? -1 : 1;
         displayedDate.set(switch (view.get()) {
-            case MONTHS -> {
+            case DAYS -> {
                 YearMonth target = YearMonth.from(date).plusMonths(step);
                 yield target.atDay(Math.min(date.getDayOfMonth(), target.lengthOfMonth()));
             }
-            case YEARS -> date.plusYears(step);
-            case DECADES -> date.plusYears(10L * step);
-            case CENTURIES -> date.plusYears(100L * step);
+            case MONTHS -> date.plusYears(step);
+            case YEARS -> date.plusYears(10L * step);
+            case DECADES -> date.plusYears(100L * step);
+            case CENTURIES -> date.plusYears(1000L * step);
         });
     }
 
@@ -76,7 +77,7 @@ public final class DefaultDatePickerModel implements DatePickerModel {
         LocalDate date = displayedDate.get();
         YearMonth target = YearMonth.of(date.getYear(), month);
         displayedDate.set(target.atDay(Math.min(date.getDayOfMonth(), target.lengthOfMonth())));
-        view.set(DateView.MONTHS);
+        view.set(DateView.DAYS);
     }
 
     @Override
@@ -90,6 +91,12 @@ public final class DefaultDatePickerModel implements DatePickerModel {
     @Override
     public void selectDecade(int decadeStartYear) {
         selectYear(decadeStartYear);
+        view.set(DateView.YEARS);
+    }
+
+    @Override
+    public void selectCentury(int centuryStartYear) {
+        selectYear(centuryStartYear);
         view.set(DateView.DECADES);
     }
 }

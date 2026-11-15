@@ -15,18 +15,32 @@ class DefaultDatePickerModelTest {
 
         model.navigate(1);
         assertEquals(LocalDate.of(2026, 3, 28), model.displayedDateProperty().get());
+        model.navigate(-1);
+        assertEquals(LocalDate.of(2026, 2, 28), model.displayedDateProperty().get());
+
+        model.setView(DateView.MONTHS);
+        model.navigate(1);
+        assertEquals(LocalDate.of(2027, 2, 28), model.displayedDateProperty().get());
+        model.navigate(-1);
+        assertEquals(LocalDate.of(2026, 2, 28), model.displayedDateProperty().get());
 
         model.setView(DateView.YEARS);
         model.navigate(1);
-        assertEquals(LocalDate.of(2027, 3, 28), model.displayedDateProperty().get());
+        assertEquals(LocalDate.of(2036, 2, 28), model.displayedDateProperty().get());
+        model.navigate(-1);
+        assertEquals(LocalDate.of(2026, 2, 28), model.displayedDateProperty().get());
 
         model.setView(DateView.DECADES);
         model.navigate(1);
-        assertEquals(LocalDate.of(2037, 3, 28), model.displayedDateProperty().get());
+        assertEquals(LocalDate.of(2126, 2, 28), model.displayedDateProperty().get());
+        model.navigate(-1);
+        assertEquals(LocalDate.of(2026, 2, 28), model.displayedDateProperty().get());
 
         model.setView(DateView.CENTURIES);
         model.navigate(1);
-        assertEquals(LocalDate.of(2137, 3, 28), model.displayedDateProperty().get());
+        assertEquals(LocalDate.of(3026, 2, 28), model.displayedDateProperty().get());
+        model.navigate(-1);
+        assertEquals(LocalDate.of(2026, 2, 28), model.displayedDateProperty().get());
     }
 
     @Test
@@ -37,7 +51,7 @@ class DefaultDatePickerModelTest {
         model.selectDate(LocalDate.of(2000, 2, 29));
 
         assertEquals(LocalDate.of(2000, 2, 29), model.selectedDateProperty().get());
-        assertEquals(DateView.MONTHS, model.viewProperty().get());
+        assertEquals(DateView.DAYS, model.viewProperty().get());
     }
 
     @Test
@@ -48,5 +62,24 @@ class DefaultDatePickerModelTest {
         model.selectMonth(2);
 
         assertEquals(LocalDate.of(2024, 2, 29), model.displayedDateProperty().get());
+        assertEquals(DateView.DAYS, model.viewProperty().get());
+    }
+
+    @Test
+    void selectingYearOpensMonthSelectionAndDecadeSelectionOpensYearSelection() {
+        DefaultDatePickerModel model = new DefaultDatePickerModel();
+        model.showDate(LocalDate.of(2024, 2, 29));
+
+        model.selectYear(2025);
+        assertEquals(LocalDate.of(2025, 2, 28), model.displayedDateProperty().get());
+        assertEquals(DateView.MONTHS, model.viewProperty().get());
+
+        model.selectDecade(2031);
+        assertEquals(LocalDate.of(2031, 2, 28), model.displayedDateProperty().get());
+        assertEquals(DateView.YEARS, model.viewProperty().get());
+
+        model.selectCentury(2001);
+        assertEquals(LocalDate.of(2001, 2, 28), model.displayedDateProperty().get());
+        assertEquals(DateView.DECADES, model.viewProperty().get());
     }
 }

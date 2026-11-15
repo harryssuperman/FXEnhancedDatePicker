@@ -24,4 +24,6 @@ public interface DatePickerModel {
     void selectYear(int year);
 
     void selectDecade(int decadeStartYear);
+
+    void selectCentury(int centuryStartYear);
 }

@@ -14,36 +14,38 @@
 }
 
 .date-summary {
-    -fx-min-width: 190;
-    -fx-pref-width: 210;
+    -fx-min-width: 240;
+    -fx-pref-width: 270;
+    -fx-max-width: Infinity;
     -fx-alignment: TOP_LEFT;
 }
 
 .date-calendar {
-    -fx-min-width: 330;
-    -fx-pref-width: 350;
-}
-
-.date-summary-caption {
-    -fx-text-fill: #69758b;
-    -fx-font-size: 11;
-    -fx-font-weight: bold;
+    -fx-min-width: 590;
+    -fx-pref-width: 620;
 }
 
 .date-summary-day {
-    -fx-text-fill: #64728b;
-    -fx-font-size: 14;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-font-size: 1em;
+    -fx-opacity: 0.72;
 }
 
 .date-summary-date {
-    -fx-text-fill: #1d2b45;
-    -fx-font-size: 25;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-font-size: 1.65em;
     -fx-font-weight: bold;
+    -fx-wrap-text: true;
 }
 
-.date-summary-year {
-    -fx-text-fill: #64728b;
-    -fx-font-size: 15;
+.date-trigger {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.date-trigger:hover {
+    -fx-text-fill: #3158c8;
 }
 
 .date-picker-navigation {
@@ -53,7 +55,7 @@
 
 .date-picker-navigation .button {
     -fx-background-color: transparent;
-    -fx-text-fill: #34425d;
+    -fx-text-fill: -fx-text-base-color;
     -fx-cursor: hand;
 }
 
@@ -64,7 +66,7 @@
 }
 
 .date-picker-title {
-    -fx-font-size: 15;
+    -fx-font-size: 1.07em;
     -fx-font-weight: bold;
 }
 
@@ -74,10 +76,10 @@
 }
 
 .date-picker-levels .button {
-    -fx-font-size: 11;
+    -fx-font-size: 0.79em;
     -fx-background-radius: 14;
     -fx-background-color: transparent;
-    -fx-text-fill: #596780;
+    -fx-text-fill: -fx-text-base-color;
     -fx-cursor: hand;
 }
 
@@ -92,9 +94,12 @@
 }
 
 .date-weekday {
-    -fx-text-fill: #7b879a;
-    -fx-font-size: 11;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-font-size: 0.79em;
+    -fx-opacity: 0.72;
     -fx-alignment: CENTER;
+    -fx-wrap-text: true;
+    -fx-min-height: 30;
 }
 
 .date-cell {
@@ -107,11 +112,12 @@
 }
 
 .date-cell-outside {
-    -fx-text-fill: #aab2c0;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-opacity: 0.45;
 }
 
 .date-cell-selected, .date-choice-selected {
-    -fx-background-color: #3158c8;
+    -fx-background-color: -fx-accent;
     -fx-text-fill: white;
 }
 
@@ -127,6 +133,6 @@
 }
 
 .date-today {
-    -fx-text-fill: #3158c8;
+    -fx-text-fill: -fx-accent;
     -fx-font-weight: bold;
 }
