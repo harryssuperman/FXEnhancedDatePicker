@@ -5,6 +5,7 @@ import com.github.harryssuperman.fxdatepicker.api.DatePickerModel;
 import com.github.harryssuperman.fxdatepicker.api.DateView;
 import com.github.harryssuperman.fxdatepicker.core.DefaultDatePickerModel;
 import com.github.harryssuperman.fxdatepicker.themes.DatePickerTheme;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,6 +15,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Window;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -40,6 +43,7 @@ public final class EnhancedDatePicker extends HBox {
     private final Locale locale;
     private final ResourceBundle messages;
     private final DateTimeFormatter dateFormatter;
+    private final Popup pickerPopup = new Popup();
     private final VBox selectedDatePanel = new VBox(10);
     private final VBox calendar = new VBox(12);
     private final Label selectedDay = new Label();
@@ -112,15 +116,28 @@ public final class EnhancedDatePicker extends HBox {
                 + "-fx-accent: " + configuration.accentColor().toString() + ";");
         getStylesheets().add(theme.stylesheet());
 
-        getChildren().addAll(createSummary(), createCalendar());
+        getChildren().add(createSummary());
+        createCalendar();
         configurePanelSize(selectedDatePanel, configuration.selectedDatePanelWidth(),
                 configuration.selectedDatePanelHeight());
         configurePanelSize(calendar, configuration.selectionPanelWidth(),
                 configuration.selectionPanelHeight());
+        calendar.getStylesheets().add(theme.stylesheet());
+        calendar.setStyle("-fx-font-family: \"" + configuration.fontFamily().replace("\"", "\\\"") + "\";"
+                + "-fx-font-size: " + configuration.fontSize() + "px;"
+                + "-fx-text-base-color: " + configuration.textColor().toString() + ";"
+                + "-fx-accent: " + configuration.accentColor().toString() + ";");
         selectedDay.setVisible(theme.showsWeekday());
         selectedDay.setManaged(theme.showsWeekday());
-        calendar.setVisible(false);
-        calendar.setManaged(false);
+        pickerPopup.getContent().add(calendar);
+        pickerPopup.setAutoFix(true);
+        pickerPopup.setAutoHide(true);
+        pickerPopup.setHideOnEscape(true);
+        sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene == null) {
+                closePicker();
+            }
+        });
         model.selectedDateProperty().addListener((observable, oldDate, newDate) -> updateSummary(newDate));
         model.displayedDateProperty().addListener((observable, oldDate, newDate) -> refresh());
         model.viewProperty().addListener((observable, oldView, newView) -> refresh());
@@ -190,7 +207,7 @@ public final class EnhancedDatePicker extends HBox {
         }
     }
 
-    private VBox createCalendar() {
+    private void createCalendar() {
         previousPage.setTooltip(new Tooltip(text("page.previous")));
         previousPage.setOnAction(event -> model.navigate(-1));
 
@@ -235,7 +252,6 @@ public final class EnhancedDatePicker extends HBox {
         choices.getStyleClass().add("date-grid");
         calendar.getStyleClass().add("date-calendar");
         calendar.getChildren().addAll(navigation, levels, today, choices);
-        return calendar;
     }
 
     private void updateSummary(LocalDate date) {
@@ -246,18 +262,26 @@ public final class EnhancedDatePicker extends HBox {
     }
 
     private void openPicker() {
-        if (!calendar.isVisible()) {
-            model.showDate(model.selectedDateProperty().get());
-            model.setView(DateView.DAYS);
-            calendar.setManaged(true);
-            calendar.setVisible(true);
-            PickerAnimations.fadeIn(calendar);
+        if (pickerPopup.isShowing()) {
+            closePicker();
+            return;
         }
+        Window owner = getScene() == null ? null : getScene().getWindow();
+        if (owner == null || !owner.isShowing()) {
+            return;
+        }
+        model.showDate(model.selectedDateProperty().get());
+        model.setView(DateView.DAYS);
+        Bounds triggerBounds = selectedDate.localToScreen(selectedDate.getBoundsInLocal());
+        if (triggerBounds == null) {
+            return;
+        }
+        pickerPopup.show(owner, triggerBounds.getMinX(), triggerBounds.getMaxY());
+        PickerAnimations.fadeIn(calendar);
     }
 
     private void closePicker() {
-        calendar.setVisible(false);
-        calendar.setManaged(false);
+        pickerPopup.hide();
     }
 
     private void refresh() {

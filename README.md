@@ -1,6 +1,6 @@
 # FX Enhanced Date Picker
 
-A JavaFX date picker that keeps the selected date visible and opens a direct-navigation panel when the date is clicked. Navigate between days, months, years, decades, centuries, and millennia without scrolling through intermediate dates.
+A JavaFX date picker that keeps the selected date visible and opens an anchored popup when the date is clicked. The popup does not change the layout of the host scene. Navigate between days, months, years, decades, centuries, and millennia without scrolling through intermediate dates.
 
 ## Modules
 
@@ -55,7 +55,7 @@ EnhancedDatePicker picker = new EnhancedDatePicker(
 
 ## Customize appearance and language
 
-`DatePickerConfiguration` configures the locale, font family, font size, text and accent colors, date format, and panel dimensions. The locale also controls month and weekday names and the first day of the week. Spanish, English, and German translations are included. For other languages, provide a `ResourceBundle` with the same keys as `DatePickerMessages.properties`.
+`DatePickerConfiguration` configures the locale, font family, font size, text and accent colors, date format, and the dimensions of the selected-date panel and popup. The locale also controls month and weekday names and the first day of the week. Spanish, English, and German translations are included. For other languages, provide a `ResourceBundle` with the same keys as `DatePickerMessages.properties`.
 
 ```java
 DatePickerConfiguration configuration = DatePickerConfiguration.builder()
@@ -70,7 +70,7 @@ DatePickerConfiguration configuration = DatePickerConfiguration.builder()
 EnhancedDatePicker picker = new EnhancedDatePicker(DatePickerTheme.DEFAULT, configuration);
 ```
 
-Panel dimensions are specified in JavaFX points. Heights are automatic by default; set a height to use a fixed preferred height:
+Dimensions are specified in JavaFX points. Heights are automatic by default; set a height to use a fixed preferred height:
 
 ```java
 DatePickerConfiguration configuration = DatePickerConfiguration.builder()

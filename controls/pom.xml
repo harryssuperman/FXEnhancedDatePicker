@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.harryssuperman</groupId>
         <artifactId>fx-enhanced-datepicker</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>fx-enhanced-datepicker-controls</artifactId>
