@@ -1,5 +1,5 @@
-module com.github.harryssuperman.fxdatepicker.core {
+module io.github.harryssuperman.fxdatepicker.core {
     requires javafx.base;
-    requires com.github.harryssuperman.fxdatepicker.api;
-    exports com.github.harryssuperman.fxdatepicker.core;
+    requires io.github.harryssuperman.fxdatepicker.api;
+    exports io.github.harryssuperman.fxdatepicker.core;
 }

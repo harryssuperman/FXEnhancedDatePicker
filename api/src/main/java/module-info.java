@@ -1,4 +1,4 @@
-module com.github.harryssuperman.fxdatepicker.api {
+module io.github.harryssuperman.fxdatepicker.api {
     requires transitive javafx.base;
-    exports com.github.harryssuperman.fxdatepicker.api;
+    exports io.github.harryssuperman.fxdatepicker.api;
 }

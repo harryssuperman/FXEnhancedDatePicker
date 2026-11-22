@@ -1,6 +1,6 @@
-package com.github.harryssuperman.fxdatepicker.core;
+package io.github.harryssuperman.fxdatepicker.core;
 
-import com.github.harryssuperman.fxdatepicker.api.DateView;
+import io.github.harryssuperman.fxdatepicker.api.DateView;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
