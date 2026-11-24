@@ -110,10 +110,6 @@ public final class EnhancedDatePicker extends HBox {
                 ? DEFAULT_DATE_FORMAT.withLocale(locale)
                 : configuration.dateFormatter().withLocale(locale);
         getStyleClass().add("enhanced-date-picker");
-        setStyle("-fx-font-family: \"" + configuration.fontFamily().replace("\"", "\\\"") + "\";"
-                + "-fx-font-size: " + configuration.fontSize() + "px;"
-                + "-fx-text-base-color: " + configuration.textColor().toString() + ";"
-                + "-fx-accent: " + configuration.accentColor().toString() + ";");
         getStylesheets().add(theme.stylesheet());
 
         getChildren().add(createSummary());
@@ -123,10 +119,6 @@ public final class EnhancedDatePicker extends HBox {
         configurePanelSize(calendar, configuration.selectionPanelWidth(),
                 configuration.selectionPanelHeight());
         calendar.getStylesheets().add(theme.stylesheet());
-        calendar.setStyle("-fx-font-family: \"" + configuration.fontFamily().replace("\"", "\\\"") + "\";"
-                + "-fx-font-size: " + configuration.fontSize() + "px;"
-                + "-fx-text-base-color: " + configuration.textColor().toString() + ";"
-                + "-fx-accent: " + configuration.accentColor().toString() + ";");
         selectedDay.setVisible(theme.showsWeekday());
         selectedDay.setManaged(theme.showsWeekday());
         pickerPopup.getContent().add(calendar);
@@ -451,8 +443,7 @@ public final class EnhancedDatePicker extends HBox {
             case DAYS -> DateView.MONTHS;
             case MONTHS -> DateView.YEARS;
             case YEARS -> DateView.DECADES;
-            case DECADES -> DateView.CENTURIES;
-            case CENTURIES -> DateView.CENTURIES;
+            case DECADES, CENTURIES -> DateView.CENTURIES;
         });
     }
 
